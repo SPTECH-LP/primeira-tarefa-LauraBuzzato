@@ -5,7 +5,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Revisão Matriz</title>
 </head>
+<style>
+    .container{
+        background-color: rgb(208, 208, 235);
+        width: 450px;
+        display: grid;
+        text-align: center;
+        grid-template-columns: repeat(3, 1fr);
+        justify-items: center;
+        box-shadow: 2%;
+        border-radius: 10px;
+    }
+    .item{
+        background-color: rgb(191, 155, 225);
+        width: 100px;
+        height: 50px;
+        margin: 5px;
+    }
+</style>
 <body>
-    
+    <div class="container" id="div_matriz">
+       <!-- <div class="item">X</div>
+        <div class="item">X</div>
+        <div class="item">X</div>
+        <div class="item">X</div>
+        <div class="item">X</div>
+        <div class="item">X</div>
+        <div class="item">X</div>
+        <div class="item">X</div>
+        <div class="item">X</div> -->
+    </div>
+    <button onclick="montarMatriz()">Montar Matriz</button>
+    <br><br>
+    <input type="text" id="ipt_linha" placeholder="LINHA">
+    <input type="text" id="ipt_coluna" placeholder="COLUNA">
+    <button onclick="consultarMatriz()">Consultar</button>
+    <div id="resposta"></div>
 </body>
+<script>
+    let minhaMatriz = []
+
+    function montarMatriz(){
+        div_matriz.innerHTML=''
+
+        
+        let qtdLinhas = 3
+        let qtdColunas = 3
+
+        let valorInicial = 5
+
+        for(let linha=0; linha<qtdLinhas; linha++){
+            minhaMatriz[linha]=[]
+            for(let coluna=0; coluna<qtdColunas; coluna++){
+                minhaMatriz[linha][coluna] =  valorInicial
+                valorInicial += 5
+
+                // ja preenchi agora vou colocar no html
+                div_matriz.innerHTML+=`<div class="item">${minhaMatriz[linha][coluna]}</div>`
+            }
+        }
+
+        console.log(minhaMatriz);
+        
+    }
+
+    function consultarMatriz(){
+        let linha = Number(ipt_linha.value)
+        let coluna = Number(ipt_coluna.value)
+
+        let valor = minhaMatriz[linha][coluna]
+
+        resposta.innerHTML = `O valor da linha ${linha} e da coluna ${coluna} é: ${valor}`
+    }
+
+</script>
 </html>
